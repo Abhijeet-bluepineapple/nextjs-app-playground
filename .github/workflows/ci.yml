@@ -9,4 +9,4 @@ jobs:
         with:
           node-version: 18
       - run: npm i -g lighthouse-badges
-      - run: lighthouse-badges --url https://www.youtube.com/ -o test_results
+      - run: lighthouse-badges --url https://www.youtube.com/ -o ./
