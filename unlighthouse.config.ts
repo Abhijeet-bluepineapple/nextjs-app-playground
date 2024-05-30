@@ -8,7 +8,7 @@ module.exports = {
     '/showrooms/',
     '/drive-car-of-the-year/2024/'
    ],
-  // debug: true,
+  debug: true,
   // puppeteerClusterOptions: {
   // //   only run 1 worker at a time
   //   maxConcurrency: 1
@@ -16,10 +16,10 @@ module.exports = {
   scanner: {
     device: 'desktop',
     throttle: false,
-    samples: 5,
+    samples: 1,
   },
   // Exclude performance scores since they are not correct.
   lighthouseOptions: {
-    // onlyCategories: ['seo','accessibility','best-practices'],
+    onlyCategories: ['seo','accessibility','best-practices'],
   }
 }

@@ -32,6 +32,7 @@ jobs:
         run: echo "${RESULT}" && echo "${DOMAIN}"
 
       - name: Cache Node Modules
+        id: cache_node_modules
         uses: actions/cache@v3
         with:
           path: node_modules
@@ -44,7 +45,7 @@ jobs:
 
       - name: Run Unlighthouse CI
         id: unlighthouse
-        run: unlighthouse-ci --debug --site "${DOMAIN}" --build-static --json --output-path=.unlighthouse/
+        run: unlighthouse-ci --debug --site "$(echo $DOAMIN)" --build-static --json --output-path=.unlighthouse/
 
       - name: Upload Unlighthouse Output
         uses: actions/upload-artifact@v3
