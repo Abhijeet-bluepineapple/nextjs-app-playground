@@ -20,6 +20,16 @@ jobs:
         env:
           GITHUB_CONTEXT: "https://test-lighthouse-report.grille-preview-environment-ugt03go.preflig.ht"
         run: echo "$GITHUB_CONTEXT"
+      - name: Test ENV setting
+        id: test_env 
+        run: |
+          RESULT="Test"
+          echo "Domain $RESULT"
+          echo "DOMAIN=$RESULT" >> $GITHUB_ENV
+
+      - name: Log Test 
+        id: print_env
+        run: echo "${RESULT}" && echo "${GITHUB_ENV}"
 
       - name: Cache Node Modules
         uses: actions/cache@v3
