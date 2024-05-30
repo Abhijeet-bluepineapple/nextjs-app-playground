@@ -21,5 +21,12 @@ module.exports = {
   // Exclude performance scores since they are not correct.
   lighthouseOptions: {
     onlyCategories: ['seo','accessibility','best-practices'],
+  },
+  ci : {
+    budget : {
+      accessibility: 100,
+      seo: 100,
+      "best-practices": 99
+    }
   }
 }
