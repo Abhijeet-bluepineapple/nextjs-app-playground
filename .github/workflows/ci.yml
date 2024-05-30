@@ -34,8 +34,6 @@ jobs:
 
       - name: Run Unlighthouse CI
         id: unlighthouse
-        env:
-          GITHUB_CONTEXT: ${{ github.head_ref }}
         run: unlighthouse-ci --debug --site "${GITHUB_CONTEXT}" --build-static --json --output-path=.unlighthouse/
 
       - name: Upload Unlighthouse Output
