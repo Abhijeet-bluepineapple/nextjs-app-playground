@@ -20,16 +20,6 @@ jobs:
         env:
           GITHUB_CONTEXT: "https://test-lighthouse-report.grille-preview-environment-ugt03go.preflig.ht"
         run: echo "$GITHUB_CONTEXT"
-      - name: Test ENV setting
-        id: test_env 
-        run: |
-          RESULT="https://test-lighthouse-report.grille-preview-environment-ugt03go.preflig.ht"
-          echo "Domain $RESULT"
-          echo "DOMAIN=$RESULT" >> $GITHUB_ENV
-
-      - name: Log Test 
-        id: print_env
-        run: echo "${RESULT}" && echo "${DOMAIN}"
 
       - name: Cache Node Modules
         id: cache_node_modules
@@ -41,11 +31,15 @@ jobs:
             ${{ runner.os }}-node-modules-
 
       - name: Install Dependencies
-        run: npm install -g @unlighthouse/cli puppeteer netlify-cli
+        run: 
+          npm install -g @unlighthouse/cli puppeteer netlify-cli
 
       - name: Run Unlighthouse CI
         id: unlighthouse
-        run: unlighthouse-ci --debug --site "$(echo $DOAMIN)" --build-static --json --output-path=.unlighthouse/
+        run: |
+          RESULT="https://test-lighthouse-report.grille-preview-environment-ugt03go.preflig.ht"
+          echo "Domain $RESULT"
+          unlighthouse-ci --debug --site "$RESULT" --build-static --json --output-path=.unlighthouse/
 
       - name: Upload Unlighthouse Output
         uses: actions/upload-artifact@v3
