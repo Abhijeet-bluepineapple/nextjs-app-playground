@@ -29,22 +29,20 @@ jobs:
 
       - name: Log Test 
         id: print_env
-        run: echo "${RESULT}" && echo "${GITHUB_ENV}"
+        run: echo "${RESULT}" && echo "${DOMAIN}"
 
       - name: Cache Node Modules
         uses: actions/cache@v3
         with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          path: 'node_modules'
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install Dependencies
         run: npm install -g @unlighthouse/cli puppeteer netlify-cli
 
       - name: Run Unlighthouse CI
         id: unlighthouse
-        run: unlighthouse-ci --debug --site "$DOMAIN" --build-static --json --output-path=.unlighthouse/
+        run: unlighthouse-ci --debug --site "${DOMAIN}" --build-static --json --output-path=.unlighthouse/
 
       - name: Upload Unlighthouse Output
         uses: actions/upload-artifact@v3
