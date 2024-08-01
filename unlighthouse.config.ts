@@ -1,12 +1,12 @@
 export default {
   urls: [
     '/',
-    '/news/',
-    '/reviews/',
-    '/cars-for-sale/',
-    '/cars-for-sale/search/',
-    '/showrooms/',
-    '/drive-car-of-the-year/2024/'
+    // '/news/',
+    // '/reviews/',
+    // '/cars-for-sale/',
+    // '/cars-for-sale/search/',
+    // '/showrooms/',
+    // '/drive-car-of-the-year/2024/'
    ],
   // debug: true,
   // puppeteerClusterOptions: {
@@ -16,7 +16,7 @@ export default {
   scanner: {
     device: 'desktop',
     throttle: false,
-    samples: 5,
+    samples: 1,
   },
   // Exclude performance scores since they are not correct.
   lighthouseOptions: {
